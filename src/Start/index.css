@@ -1,0 +1,8 @@
+.btn-container{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 50px 0;
+}
+.title{
+    color:rgb(171, 132, 248)
+}

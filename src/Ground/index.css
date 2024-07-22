@@ -1,0 +1,42 @@
+.img-null{
+    height: 57px;
+    width: 50px;
+}
+.leftSide{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* justify-content: end; */
+    align-items: end;
+    background-color: #3e3e3e67;
+}
+.rightSide{
+    align-items: start;
+}
+.rankIndex{
+    background-color: #fff;
+    height: 50px;
+    width: 100px;
+    background: linear-gradient(to bottom, rgb(247, 168, 225) 0%, rgb(210, 210, 255) 50%, rgb(247, 168, 225) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 10px 20px 0 0;
+    text-align: center;
+    box-sizing: content-box;
+    color:rgb(254, 249, 249)
+}
+.columnGround{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+.squareContainer{
+    /* position: relative; */
+    margin: auto;
+
+}
