@@ -63,7 +63,6 @@ function checkLinkedSquare(
     checkLinkedSquare(square, index + boardWidth, boardWidth, arr);
   }
 
-  // 返回更新后的 arr
   return arr;
 }
 
