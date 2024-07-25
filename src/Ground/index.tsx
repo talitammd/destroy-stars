@@ -83,13 +83,10 @@ export default function Ground() {
   const update = useCallback((color: Color[], arr: number[]) => {
     const len = arr.length
     setScore(prev => prev + len * len)
-    // 创建一个新的数组，而不是直接修改原数组
     const newColors = [...color];
     const sortArr = [...arr].sort((a, b) => a - b);
-    // 使用Map来存储模12的结果及其在原数组中的索引列表  
     const map = new Map();
 
-    // 遍历排序后的数组，计算模12，并更新Map  
     sortArr.forEach((val, index) => {
       const modVal = val % state;
       if (map.has(modVal)) {
@@ -98,14 +95,12 @@ export default function Ground() {
         map.set(modVal, [index]);
       }
     });
-    // 获取的是在arr中的索引
     const resMap = new Map()
     for (let i of map.values()) {
       resMap.set(sortArr[i[0]], i.length)
     }
     const getTwelveNElements = (arr: number[], col: number) => {
       for (let i = 0; i < state; i++) {
-        // 如果i能被12整除，则将arr[i]添加到result数组中  
         if (arr[i * state + col] !== -1) {
           return i
         }
@@ -128,7 +123,6 @@ export default function Ground() {
       setGameOver(true)
     return newColors;
   }, []);
-  // 设定一个分数限制，如果达不到就跳到失败重新开始，如果达到了就跳到下一关
   useEffect(() => {
     gameOver && navigator('/next', { state: { score, rank: state }, replace: true })
   }, [gameOver])
@@ -137,7 +131,7 @@ export default function Ground() {
       // 由于我们使用了 Grid 布局，这里不需要计算 left 和 bottom，Grid 会自动处理
       return (
         <div
-          key={`${row}-${column}`} // 为每个方块添加唯一的 key
+          key={`${row}-${column}`} 
           className="square"
           // 这里直接调用squares.color访问不到更新后的状态，只有作为参数传递进来的时候才能访问到
           onClick={() => {
@@ -159,8 +153,6 @@ export default function Ground() {
     const newBlocks: React.ReactElement[] = [];
     for (let i = 0; i < column; i++) {
       for (let j = 0; j < column; j++) {
-        // 为什么newColors一直在被循环迭代，但还是能被createSquare访问到完整的newColors呢
-        // 因为传递的实际上是一个引用，也就是说，当你看到所有方块都被呈现出来的时候，你实际上获取到的已经是完整的newColors了
         newBlocks.push(createSquare(colorArr[i * state + j], i, j, colorArr));
       }
     }
@@ -180,8 +172,6 @@ export default function Ground() {
       for (let j = 0; j < column; j++) {
         const value = Math.floor(Math.random() * 5); // 随机生成方块的值
         newColors.push(value);
-        // 为什么newColors一直在被循环迭代，但还是能被createSquare访问到完整的newColors呢
-        // 因为传递的实际上是一个引用，也就是说，当你看到所有方块都被呈现出来的时候，你实际上获取到的已经是完整的newColors了
         newBlocks.push(createSquare(value, i, j, newColors));
       }
     }

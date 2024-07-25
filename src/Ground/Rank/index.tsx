@@ -19,8 +19,6 @@ export default function Rank(state: any) {
         console.error('Error parsing local storage data:', error);
     }
 
-    // let rankList = local ? JSON.parse(local) : []
-    // rankList = rankList.slice(1, -1).split(',')
     return (
         <div className="rankBox">
             <p>排行榜</p>
